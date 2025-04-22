@@ -1,0 +1,43 @@
+<svg width="1000" height="150" viewBox="0 0 1000 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 150H1000V100C950 90 900 110 850 105C800 100 750 80 700 85C650 90 600 110 550 105C500 100 450 80 400 85C350 90 300 110 250 105C200 100 150 80 100 85C50 90 0 110 0 105V150Z" fill="#F7F7FB"/>
+  <path d="M50 120H70V90H50V120Z" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M60 90V70L70 60V90" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M50 60V90" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M40 120H90V90H40V120Z" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M40 90L65 70L90 90" stroke="#D9D9D9" stroke-width="1"/>
+  <circle cx="20" cy="120" r="10" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M20 110V130" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M10 120H30" stroke="#D9D9D9" stroke-width="1"/>
+  <circle cx="120" cy="120" r="10" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M120 110V130" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M110 120H130" stroke="#D9D9D9" stroke-width="1"/>
+  <rect x="150" y="50" width="60" height="70" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="60" x2="210" y2="60" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="70" x2="210" y2="70" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="80" x2="210" y2="80" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="90" x2="210" y2="90" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="100" x2="210" y2="100" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="150" y1="110" x2="210" y2="110" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="170" y1="50" x2="170" y2="120" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="190" y1="50" x2="190" y2="120" stroke="#D9D9D9" stroke-width="1"/>
+  <rect x="230" y="70" width="80" height="50" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M230 70L270 50L310 70" stroke="#D9D9D9" stroke-width="1"/>
+  <rect x="250" y="90" width="15" height="30" stroke="#D9D9D9" stroke-width="1"/>
+  <rect x="275" y="90" width="15" height="20" stroke="#D9D9D9" stroke-width="1"/>
+  <circle cx="230" cy="50" r="10" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M230 40V60" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M220 50H240" stroke="#D9D9D9" stroke-width="1"/>
+  <circle cx="310" cy="50" r="10" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M310 40V60" stroke="#D9D9D9" stroke-width="1"/>
+  <path d="M300 50H320" stroke="#D9D9D9" stroke-width="1"/>
+  <rect x="340" y="40" width="60" height="80" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="50" x2="400" y2="50" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="60" x2="400" y2="60" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="70" x2="400" y2="70" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="80" x2="400" y2="80" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="90" x2="400" y2="90" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="100" x2="400" y2="100" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="340" y1="110" x2="400" y2="110" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="360" y1="40" x2="360" y2="120" stroke="#D9D9D9" stroke-width="1"/>
+  <line x1="380" y1="40" x2="380" y2="120" stroke="#D9D9D9" stroke-width="1"/>
+</svg>
