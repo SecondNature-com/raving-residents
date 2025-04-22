@@ -14,7 +14,7 @@ export default async function Dashboard() {
       description: "Let's get you set up before your move-in.",
       actionText: "Set up utilities",
       actionLink: "#",
-      imageSrc: "/images/home-setup.png",
+      imageSrc: "/images/home-setup.svg",
       imageAlt: "Home setup illustration",
     },
     {
@@ -23,7 +23,7 @@ export default async function Dashboard() {
       description: "We've got allergen-grade filters to help you get through the season.",
       actionText: "See filters",
       actionLink: "#",
-      imageSrc: "/images/flu-season.png",
+      imageSrc: "/images/flu-season.svg",
       imageAlt: "Flu season illustration",
     },
     {
@@ -32,7 +32,7 @@ export default async function Dashboard() {
       description: "We report on-time rent payments every 3 months to help boost your credit.",
       actionText: "See report",
       actionLink: "#",
-      imageSrc: "/images/credit-report.png",
+      imageSrc: "/images/credit-report.svg",
       imageAlt: "Credit report illustration",
     },
   ]
@@ -43,7 +43,7 @@ export default async function Dashboard() {
       <header className="border-b border-[#E5E7EB] py-4 px-6">
         <div className="max-w-7xl mx-auto">
           <Image
-            src="/images/invitation-homes-logo.png"
+            src="/images/invitation-homes-logo.svg"
             alt="Invitation Homes"
             width={180}
             height={40}
@@ -56,7 +56,7 @@ export default async function Dashboard() {
         {/* Cityscape illustration */}
         <div className="mt-6 mb-8">
           <Image
-            src="/images/cityscape.png"
+            src="/images/cityscape.svg"
             alt="Cityscape illustration"
             width={1000}
             height={150}
