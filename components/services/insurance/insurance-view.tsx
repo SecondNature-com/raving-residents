@@ -83,7 +83,7 @@ export function InsuranceView() {
                 />
                 
                 <div className="w-full text-center text-[#5C5C75] text-sm font-normal underline leading-[21px]">
-                  <Link href="#" className="hover:text-[#396E1F] transition-colors">
+                  <Link href="/insurance/decline" className="hover:text-[#396E1F] transition-colors">
                     Bringing your own insurance or prefer customized coverage?
                   </Link>
                 </div>
