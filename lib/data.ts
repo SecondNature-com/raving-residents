@@ -45,8 +45,8 @@ export async function getUserData(): Promise<UserData> {
       },
       {
         id: "service-5",
-        name: "Renter's insurance program",
-        link: "/services/renters-insurance",
+        name: "Insurance",
+        link: "/services/insurance",
       },
       {
         id: "service-6",

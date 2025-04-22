@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import { colors, typography, borderRadius, shadows } from "./lib/figma-tokens"
 
 const config: Config = {
   darkMode: ["class"],
@@ -10,16 +11,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-sans)"],
-      },
+      fontFamily: typography.fontFamily,
       colors: {
-        // Updated colors from Figma
-        primary: "#16A34A", // Green
-        secondary: "#0F172A", // Dark blue/slate
-        "text-muted": "#64748B", // Slate 500
-        "bg-card": "#F8FAFC", // Slate 50
-        "border-color": "#CBD5E1", // Slate 300
+        // Use the colors from our figma-tokens file
+        primary: colors.primary,
+        secondary: colors.secondary,
+        "text-muted": colors.secondary[500], // Slate 500
+        "bg-card": colors.secondary[50], // Slate 50
+        "border-color": colors.secondary[300], // Slate 300
 
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -48,10 +47,14 @@ const config: Config = {
         ring: "hsl(var(--ring))",
       },
       borderRadius: {
+        // Use CSS variables for theme consistency
+        ...borderRadius,
+        // Override with design system variables
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: shadows,
     },
   },
   plugins: [],
