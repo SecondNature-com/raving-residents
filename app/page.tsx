@@ -3,10 +3,22 @@ import { InfoCardsCarousel } from '@/components/info-cards-carousel';
 import { ResidentServices } from '@/components/resident-services';
 import { getUserData, getInfoCards } from '@/lib/data';
 
-export default async function Dashboard() {
+interface PageProps {
+	searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function Dashboard({ searchParams }: PageProps) {
 	// Fetch user data and info cards server-side
+	// Get userId from query parameter or use default
+	const userId = (searchParams.userId as string) || "123e4567-e89b-42d3-a456-556642440000";
+
+	// Validate UUID format
+	if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(userId)) {
+		throw new Error('Invalid UUID format in URL parameter')
+	}
+
 	const [userData, infoCards] = await Promise.all([
-		getUserData(),
+		getUserData(userId),
 		getInfoCards(),
 	]);
 

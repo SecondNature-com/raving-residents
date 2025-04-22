@@ -10,21 +10,7 @@ interface InfoCard {
   imageAlt: string
 }
 
-// API response interfaces
-interface UserProfileResponse {
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-}
-
-interface UserServicesResponse {
-  services: {
-    id: string
-    name: string
-    link: string
-  }[]
-}
+import { fetchUserProfile, fetchUserServices, UserProfileResponse, UserServicesResponse } from './api'
 
 interface UserData {
   id: string
@@ -36,66 +22,6 @@ interface UserData {
     name: string
     link: string
   }[]
-}
-
-// Mock API calls
-async function fetchUserProfile(userId: string): Promise<UserProfileResponse> {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 100))
-
-  // Mock user profile data
-  return {
-    id: userId,
-    firstName: "Christopher",
-    lastName: "Johnson",
-    email: "christopher.johnson@example.com"
-  }
-}
-
-async function fetchUserServices(userId: string): Promise<UserServicesResponse> {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 100))
-
-  // Mock user services data
-  return {
-    services: [
-      {
-        id: "service-1",
-        name: "Air filter",
-        link: "/services/air-filter",
-      },
-      {
-        id: "service-2",
-        name: "Credit building",
-        link: "/services/credit-building",
-      },
-      {
-        id: "service-3",
-        name: "Identity protection",
-        link: "/services/identity-protection",
-      },
-      {
-        id: "service-4",
-        name: "Pest control",
-        link: "/services/pest-control",
-      },
-      {
-        id: "service-5",
-        name: "Renter's insurance program",
-        link: "/services/renters-insurance",
-      },
-      {
-        id: "service-6",
-        name: "Resident rewards",
-        link: "/services/rewards",
-      },
-      {
-        id: "service-7",
-        name: "Lawn care",
-        link: "/services/lawn-care",
-      },
-    ]
-  }
 }
 
 export async function getUserData(userId: string): Promise<UserData> {
