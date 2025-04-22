@@ -16,7 +16,7 @@ export function InsuranceView() {
       <div className="max-w-[375px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto flex flex-col items-center gap-6">
         {/* Header Section */}
         <PageHeader 
-          logoSrc="/images/second-nature-logo.svg"
+          logoSrc="/images/second-nature-logo-gradient.svg"
           logoAlt="Second Nature"
           monthlyTotal="$2,740"
         />
@@ -25,16 +25,22 @@ export function InsuranceView() {
         <div className="w-full md:flex md:flex-row md:flex-wrap md:justify-center md:gap-8 lg:gap-12">
           {/* Left Column on Desktop / Top Section on Mobile */}
           <div className="w-full md:w-5/12 lg:w-1/3 px-6 md:px-0 flex flex-col items-center gap-8">
-            <ProgressBar />
+            <Breadcrumb />
 
             {/* Insurance Hero Section */}
             <div className="w-full flex flex-col">
               <div className="w-full flex flex-col justify-center items-center gap-6">
                 {/* Insurance Icon */}
                 <div className="w-24 h-24 p-5 bg-[rgba(57,110,31,0.10)] rounded-[51px] flex justify-center items-center">
-                  <div className="w-16 h-16 relative">
-                    <div className="w-[41.33px] h-[52.23px] absolute left-[11px] top-[6px] bg-[#396E1F]"></div>
-                  </div>
+                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M48 8H16C13.7909 8 12 9.79086 12 12V52C12 54.2091 13.7909 56 16 56H48C50.2091 56 52 54.2091 52 52V12C52 9.79086 50.2091 8 48 8Z" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M24 20H40" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M24 32H40" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M24 44H32" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M32 8V4" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M20 8V4" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M44 8V4" stroke="#396E1F" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
                 
                 {/* Insurance Description */}
@@ -122,23 +128,35 @@ export function InsuranceView() {
 }
 
 /**
- * ProgressBar Component
+ * Breadcrumb Component
  * 
- * Displays the progress bar for the resident services flow.
+ * Displays the navigation breadcrumb for the current page.
  */
-function ProgressBar() {
+function Breadcrumb() {
   return (
-    <div className="w-full h-[23px] flex items-start gap-1">
-      <div className="w-10 h-2 bg-[#396E1F] rounded-[10px]"></div>
-      <div className="flex-1 relative flex flex-col items-start gap-1">
-        <div className="w-full h-2 bg-[#BCBCCC] rounded-[10px]"></div>
-        <div className="w-full h-2 bg-[#E8E8F1] rounded-[10px]"></div>
-        <div className="w-[20%] h-2 bg-[#396E1F]"></div>
-        <div className="absolute left-0.5 top-3 text-right text-[#707088] text-[11px] font-semibold uppercase leading-[11px]">
-          Resident services
-        </div>
-      </div>
-      <div className="w-10 h-2 bg-[#E8E8F1] rounded-[10px]"></div>
+    <div className="w-full py-2 flex items-center">
+      <nav className="flex" aria-label="Breadcrumb">
+        <ol className="inline-flex items-center space-x-1 md:space-x-2">
+          <li className="inline-flex items-center">
+            <Link 
+              href="/" 
+              className="text-[#707088] hover:text-[#396E1F] text-sm font-medium transition-colors"
+            >
+              Resident Services
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <svg className="w-3 h-3 text-[#707088] mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+              <span className="text-[#396E1F] text-sm font-semibold">
+                Insurance
+              </span>
+            </div>
+          </li>
+        </ol>
+      </nav>
     </div>
   );
 }
