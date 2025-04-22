@@ -16,15 +16,6 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  swcMinify: true,
-  webpack: (config) => {
-    // Improve hot reloading
-    config.watchOptions = {
-      poll: 1000,
-      aggregateTimeout: 300,
-    };
-    return config;
-  },
 }
 
 export default nextConfig
