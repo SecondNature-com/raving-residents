@@ -1,43 +1,14 @@
 import Image from 'next/image';
 import { InfoCardsCarousel } from '@/components/info-cards-carousel';
 import { ResidentServices } from '@/components/resident-services';
-import { getUserData } from '@/lib/data';
+import { getUserData, getInfoCards } from '@/lib/data';
 
 export default async function Dashboard() {
-	// Fetch user data server-side
-	const userData = await getUserData();
-
-	const infoCards = [
-		{
-			id: 1,
-			title: 'Feel at home from day 1',
-			description: "Let's get you set up before your move-in.",
-			actionText: 'Set up utilities',
-			actionLink: '#',
-			imageSrc: '/images/home-setup.svg',
-			imageAlt: 'Home setup illustration',
-		},
-		{
-			id: 2,
-			title: 'Ready for flu season?',
-			description:
-				"We've got allergen-grade filters to help you get through the season.",
-			actionText: 'See filters',
-			actionLink: '#',
-			imageSrc: '/images/flu-season.svg',
-			imageAlt: 'Flu season illustration',
-		},
-		{
-			id: 3,
-			title: 'You just got credit for paying your rent on time',
-			description:
-				'We report on-time rent payments every 3 months to help boost your credit.',
-			actionText: 'See report',
-			actionLink: '#',
-			imageSrc: '/images/credit-report.svg',
-			imageAlt: 'Credit report illustration',
-		},
-	];
+	// Fetch user data and info cards server-side
+	const [userData, infoCards] = await Promise.all([
+		getUserData(),
+		getInfoCards(),
+	]);
 
 	return (
 		<div className="min-h-screen bg-white font-sans">
