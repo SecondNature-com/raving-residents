@@ -123,7 +123,7 @@ const mockUsers: MockUsers = {
       },
     ],
     branding: {
-      primaryBrandingColor: '#4F8A8B',
+      primaryBrandingColor: '#A00F8B',
       secondaryBrandingColor: '#FBD46D',
     },
   },

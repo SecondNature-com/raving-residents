@@ -73,7 +73,12 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
               className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-2"
               style={{ width: `${100 / visibleCards}%` }}
             >
-              <div className="bg rounded-lg p-6 h-full flex flex-row items-center">
+              <div
+                className="rounded-lg p-6 h-full flex flex-row items-center"
+                style={{
+                  backgroundColor: `rgba(var(--color-secondary-rgb), 0.2)`,
+                }}
+              >
                 {/* Left: Text content */}
                 <div className="flex-1 pr-4">
                   <h2 className="text-xl font-bold text mb-2">{card.title}</h2>

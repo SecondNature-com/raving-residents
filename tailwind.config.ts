@@ -17,6 +17,7 @@ const config: Config = {
         // Updated colors from Figma
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
+        text: '#090949',
         'text-muted': '#64748B', // Slate 500
         'bg-card': '#F8FAFC', // Slate 50
         'border-color': '#CBD5E1', // Slate 300
