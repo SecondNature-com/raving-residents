@@ -7,6 +7,8 @@ interface PageProps {
 	searchParams: { [key: string]: string | string[] | undefined }
 }
 
+import { Service } from '@/lib/data';
+
 export default async function Dashboard({ searchParams }: PageProps) {
 	// Fetch user data and info cards server-side
 	// Get userId from query parameter or use default

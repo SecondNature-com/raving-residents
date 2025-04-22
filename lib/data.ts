@@ -12,16 +12,16 @@ interface InfoCard {
 
 import { fetchUserProfile, fetchUserServices, UserProfileResponse, UserServicesResponse } from './api'
 
+import { Service, ServiceCode } from './api';
+
+export type { Service, ServiceCode };
+
 interface UserData {
   id: string
   firstName: string
   lastName: string
   email: string
-  availableServices: {
-    id: string
-    name: string
-    link: string
-  }[]
+  availableServices: Service[]
 }
 
 export async function getUserData(userId: string): Promise<UserData> {

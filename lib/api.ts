@@ -6,12 +6,25 @@ export interface UserProfileResponse {
 	email: string;
 }
 
+export type ServiceCode = 
+	| 'filters'
+	| 'pest_control'
+	| 'id'
+	| 'move'
+	| 'credit'
+	| 'rewards'
+	| 'insurance'
+	| 'internet'
+	| 'owner_paid_pest';
+
+export interface Service {
+	id: string;
+	name: string;
+	code: ServiceCode;
+}
+
 export interface UserServicesResponse {
-	services: {
-		id: string;
-		name: string;
-		link: string;
-	}[];
+	services: Service[];
 }
 
 // Mock user data types
@@ -21,11 +34,7 @@ interface MockUser {
 		lastName: string;
 		email: string;
 	};
-	services: {
-		id: string;
-		name: string;
-		link: string;
-	}[];
+	services: Service[];
 }
 
 type MockUsers = {
@@ -45,37 +54,37 @@ const mockUsers: MockUsers = {
 			{
 				id: 'service-1',
 				name: 'Air filter',
-				link: '/services/air-filter',
+				code: 'filters',
 			},
 			{
 				id: 'service-2',
 				name: 'Credit building',
-				link: '/services/credit-building',
+				code: 'credit',
 			},
 			{
 				id: 'service-3',
 				name: 'Identity protection',
-				link: '/services/identity-protection',
+				code: 'id',
 			},
 			{
 				id: 'service-4',
 				name: 'Pest control',
-				link: '/services/pest-control',
+				code: 'pest_control',
 			},
 			{
 				id: 'service-5',
 				name: "Renter's insurance program",
-				link: '/services/renters-insurance',
+				code: 'insurance',
 			},
 			{
 				id: 'service-6',
 				name: 'Resident rewards',
-				link: '/services/resident-rewards',
+				code: 'rewards',
 			},
 			{
 				id: 'service-7',
 				name: 'Lawn care',
-				link: '/services/lawn-care',
+				code: 'owner_paid_pest',
 			},
 		],
 	},
@@ -90,17 +99,17 @@ const mockUsers: MockUsers = {
 			{
 				id: 'service-1',
 				name: 'Air filter',
-				link: '/services/air-filter',
+				code: 'filters',
 			},
 			{
 				id: 'service-5',
 				name: "Renter's insurance program",
-				link: '/services/renters-insurance',
+				code: 'insurance',
 			},
 			{
 				id: 'service-8',
 				name: 'Internet',
-				link: '/services/internet',
+				code: 'internet',
 			},
 		],
 	},
@@ -115,22 +124,22 @@ const mockUsers: MockUsers = {
 			{
 				id: 'service-1',
 				name: 'Air filter',
-				link: '/services/air-filter',
+				code: 'filters',
 			},
 			{
 				id: 'service-2',
 				name: 'Credit building',
-				link: '/services/credit-building',
+				code: 'credit',
 			},
 			{
 				id: 'service-4',
 				name: 'Pest control',
-				link: '/services/pest-control',
+				code: 'pest_control',
 			},
 			{
 				id: 'service-5',
 				name: "Renter's insurance program",
-				link: '/services/renters-insurance',
+				code: 'insurance',
 			},
 		],
 	},
