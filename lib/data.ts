@@ -1,63 +1,76 @@
 // Mock data service - would be replaced with actual API calls in production
 
+import { InfoCard } from '../components/info-cards-carousel';
+import {
+  Branding,
+  fetchBranding,
+  fetchUserProfile,
+  fetchUserServices,
+} from './api';
+
+import { Service, ServiceCode } from './api';
+
+export type { Service, ServiceCode };
+
 interface UserData {
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-  availableServices: {
-    id: string
-    name: string
-    link: string
-  }[]
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  availableServices: Service[];
+  branding: Branding;
 }
 
-export async function getUserData(): Promise<UserData> {
-  // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 100))
+export async function getUserData(userId: string): Promise<UserData> {
+  // Make API calls in parallel for better performance
+  const [userProfile, userServices, branding] = await Promise.all([
+    fetchUserProfile(userId),
+    fetchUserServices(userId),
+    fetchBranding(userId),
+  ]);
 
-  // Mock user data
+  // Combine the results into the UserData interface
   return {
-    id: "user-123",
-    firstName: "Christopher",
-    lastName: "Johnson",
-    email: "christopher.johnson@example.com",
-    availableServices: [
-      {
-        id: "service-1",
-        name: "Air filter",
-        link: "/services/air-filter",
-      },
-      {
-        id: "service-2",
-        name: "Credit building",
-        link: "/services/credit-building",
-      },
-      {
-        id: "service-3",
-        name: "Identity protection",
-        link: "/services/identity-protection",
-      },
-      {
-        id: "service-4",
-        name: "Pest control",
-        link: "/services/pest-control",
-      },
-      {
-        id: "service-5",
-        name: "Insurance",
-        link: "/services/insurance",
-      },
-      {
-        id: "service-6",
-        name: "Resident rewards",
-        link: "/services/rewards",
-      },
-      {
-        id: "service-7",
-        name: "Lawn care",
-        link: "/services/lawn-care",
-      },
-    ],
-  }
+    ...userProfile,
+    availableServices: userServices.services,
+    branding,
+  };
+}
+
+export async function getInfoCards(): Promise<InfoCard[]> {
+  // Simulate API call delay
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
+  // Mock info cards data
+  return [
+    {
+      id: 1,
+      title: 'Feel at home from day 1',
+      description: "Let's get you set up before your move-in.",
+      actionText: 'Set up utilities',
+      actionLink: '#',
+      imageSrc: '/images/at-home.svg',
+      imageAlt: 'At home illustration',
+    },
+    {
+      id: 2,
+      title: 'Ready for flu season?',
+      description:
+        "We've got allergen-grade filters to help you get through the season.",
+      actionText: 'See filters',
+      actionLink: '#',
+      imageSrc: '/images/air-filter.svg',
+      imageAlt: 'Air filter illustration',
+    },
+    {
+      id: 3,
+      title: 'You just got credit for paying your rent on time',
+      description:
+        'We report on-time rent payments every 3 months to help boost your credit.',
+      actionText: 'See report',
+      actionLink: '#',
+      imageSrc: '/images/credit-building.svg',
+      imageAlt: 'Credit report illustration',
+    },
+  ];
 }

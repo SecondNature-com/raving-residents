@@ -1,60 +1,61 @@
-"use client"
+'use client';
 
-import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState, useRef, useEffect } from 'react';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-type InfoCard = {
-  id: number
-  title: string
-  description: string
-  actionText: string
-  actionLink: string
-  imageSrc: string
-  imageAlt: string
-}
+export type InfoCard = {
+  id: number;
+  title: string;
+  description: string;
+  actionText: string;
+  actionLink: string;
+  imageSrc: string;
+  imageAlt: string;
+};
 
 interface InfoCardsCarouselProps {
-  cards: InfoCard[]
+  cards: InfoCard[];
 }
 
 export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [visibleCards, setVisibleCards] = useState(3)
-  const carouselRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(3);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Handle responsive behavior
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 640) {
-        setVisibleCards(1)
+        setVisibleCards(1);
       } else if (window.innerWidth < 1024) {
-        setVisibleCards(2)
+        setVisibleCards(2);
       } else {
-        setVisibleCards(3)
+        setVisibleCards(3);
       }
-    }
+    };
 
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  const totalSlides = Math.ceil(cards.length / visibleCards)
-  const maxIndex = Math.max(0, cards.length - visibleCards)
+  const totalSlides = Math.ceil(cards.length / visibleCards);
+  const maxIndex = Math.max(0, cards.length - visibleCards);
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => Math.max(0, prevIndex - visibleCards))
-  }
+    setCurrentIndex((prevIndex) => Math.max(0, prevIndex - visibleCards));
+  };
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(maxIndex, prevIndex + visibleCards))
-  }
+    setCurrentIndex((prevIndex) =>
+      Math.min(maxIndex, prevIndex + visibleCards)
+    );
+  };
 
   const goToSlide = (slideIndex: number) => {
-    setCurrentIndex(Math.min(maxIndex, slideIndex * visibleCards))
-  }
+    setCurrentIndex(Math.min(maxIndex, slideIndex * visibleCards));
+  };
 
   return (
     <div className="relative">
@@ -62,7 +63,9 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
       <div className="overflow-hidden" ref={carouselRef}>
         <div
           className="flex transition-transform duration-300 ease-in-out"
-          style={{ transform: `translateX(-${(currentIndex / cards.length) * 100}%)` }}
+          style={{
+            transform: `translateX(-${currentIndex * (100 / visibleCards)}%)`,
+          }}
         >
           {cards.map((card) => (
             <div
@@ -70,24 +73,34 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
               className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-2"
               style={{ width: `${100 / visibleCards}%` }}
             >
-              <div className="bg-[#F8FAFC] rounded-lg p-6 h-full">
-                <div className="flex justify-end mb-4">
-                  <Image
-                    src={card.imageSrc || "/placeholder.svg"}
+              <div
+                className="rounded-lg p-6 h-full flex flex-row items-center"
+                style={{
+                  backgroundColor: `rgba(var(--color-secondary-rgb), 0.2)`,
+                }}
+              >
+                {/* Left: Text content */}
+                <div className="flex-1 pr-4">
+                  <h2 className="text-xl font-bold text mb-2">{card.title}</h2>
+                  <p className="text-[#64748B] mb-4 text-base">
+                    {card.description}
+                  </p>
+                  <Link
+                    href={card.actionLink}
+                    className="text font-medium border-b-2 border-primary inline-block text-base"
+                  >
+                    {card.actionText}
+                  </Link>
+                </div>
+                {/* Right: Image */}
+                <div className="flex items-end justify-end h-[80%]">
+                  <img
+                    src={card.imageSrc}
                     alt={card.imageAlt}
-                    width={120}
-                    height={100}
-                    className="h-24 w-auto"
+                    className="object-contain h-full max-h-[80%] w-auto"
+                    style={{ maxHeight: '80%' }}
                   />
                 </div>
-                <h2 className="text-xl font-bold text-[#0F172A] mb-2">{card.title}</h2>
-                <p className="text-[#64748B] mb-4 text-base">{card.description}</p>
-                <Link
-                  href={card.actionLink}
-                  className="text-[#16A34A] font-medium border-b-2 border-[#16A34A] inline-block text-base"
-                >
-                  {card.actionText}
-                </Link>
               </div>
             </div>
           ))}
@@ -98,23 +111,25 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
       <button
         onClick={goToPrevious}
         className={`absolute top-1/2 left-0 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-2 shadow-md ${
-          currentIndex === 0 ? "opacity-50 cursor-not-allowed" : "opacity-100"
+          currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-100'
         }`}
         disabled={currentIndex === 0}
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-[#0F172A]" />
+        <ChevronLeft className="h-6 w-6 text" />
       </button>
 
       <button
         onClick={goToNext}
         className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 bg-white rounded-full p-2 shadow-md ${
-          currentIndex >= maxIndex ? "opacity-50 cursor-not-allowed" : "opacity-100"
+          currentIndex >= maxIndex
+            ? 'opacity-50 cursor-not-allowed'
+            : 'opacity-100'
         }`}
         disabled={currentIndex >= maxIndex}
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-[#0F172A]" />
+        <ChevronRight className="h-6 w-6 text" />
       </button>
 
       {/* Indicators */}
@@ -125,7 +140,9 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
               key={index}
               onClick={() => goToSlide(index)}
               className={`h-2 rounded-full transition-all ${
-                index === Math.floor(currentIndex / visibleCards) ? "w-6 bg-[#16A34A]" : "w-2 bg-[#E2E8F0]"
+                index === Math.round(currentIndex / visibleCards)
+                  ? 'w-6 bg-primary'
+                  : 'w-2 bg-[#E2E8F0]'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -133,5 +150,5 @@ export function InfoCardsCarousel({ cards }: InfoCardsCarouselProps) {
         </div>
       )}
     </div>
-  )
+  );
 }
