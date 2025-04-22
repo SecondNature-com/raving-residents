@@ -39,12 +39,28 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, style, ...props }, ref) => {
+    const [hovered, setHovered] = React.useState(false);
     const Comp = asChild ? Slot : 'button';
+
+    // Only apply the RGBA background for the "default" variant
+    const dynamicStyle =
+      variant === 'default'
+        ? {
+            backgroundColor: hovered
+              ? 'rgba(var(--color-primary-rgb), 1)'
+              : 'rgba(var(--color-primary-rgb), 0.9)',
+            ...style,
+          }
+        : style;
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        style={dynamicStyle}
         ref={ref}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         {...props}
       />
     );

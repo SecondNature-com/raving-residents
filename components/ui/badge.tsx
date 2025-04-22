@@ -27,9 +27,28 @@ export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {}
 
-function Badge({ className, variant, ...props }: BadgeProps) {
+function Badge({ className, variant, style, ...props }: BadgeProps) {
+  const [hovered, setHovered] = React.useState(false);
+
+  // Only apply the RGBA background for the "default" variant
+  const dynamicStyle =
+    variant === 'default'
+      ? {
+          backgroundColor: hovered
+            ? 'rgba(var(--color-primary-rgb), 1)' // 100% on hover
+            : 'rgba(var(--color-primary-rgb), 0.8)', // 80% default
+          ...style,
+        }
+      : style;
+
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <div
+      className={cn(badgeVariants({ variant }), className)}
+      style={dynamicStyle}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      {...props}
+    />
   );
 }
 
