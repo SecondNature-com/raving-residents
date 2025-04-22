@@ -1,46 +1,45 @@
 // Mock data service - would be replaced with actual API calls in production
 
-interface InfoCard {
-  id: number
-  title: string
-  description: string
-  actionText: string
-  actionLink: string
-  imageSrc: string
-  imageAlt: string
-}
-
-import { fetchUserProfile, fetchUserServices, UserProfileResponse, UserServicesResponse } from './api'
+import { InfoCard } from '../components/info-cards-carousel';
+import {
+  Branding,
+  fetchBranding,
+  fetchUserProfile,
+  fetchUserServices,
+} from './api';
 
 import { Service, ServiceCode } from './api';
 
 export type { Service, ServiceCode };
 
 interface UserData {
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-  availableServices: Service[]
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  availableServices: Service[];
+  branding: Branding;
 }
 
 export async function getUserData(userId: string): Promise<UserData> {
   // Make API calls in parallel for better performance
-  const [userProfile, userServices] = await Promise.all([
+  const [userProfile, userServices, branding] = await Promise.all([
     fetchUserProfile(userId),
-    fetchUserServices(userId)
-  ])
+    fetchUserServices(userId),
+    fetchBranding(userId),
+  ]);
 
   // Combine the results into the UserData interface
   return {
     ...userProfile,
-    availableServices: userServices.services
-  }
+    availableServices: userServices.services,
+    branding,
+  };
 }
 
 export async function getInfoCards(): Promise<InfoCard[]> {
   // Simulate API call delay
-  await new Promise((resolve) => setTimeout(resolve, 100))
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   // Mock info cards data
   return [
@@ -50,8 +49,8 @@ export async function getInfoCards(): Promise<InfoCard[]> {
       description: "Let's get you set up before your move-in.",
       actionText: 'Set up utilities',
       actionLink: '#',
-      imageSrc: '/images/home-setup.svg',
-      imageAlt: 'Home setup illustration',
+      imageSrc: '/images/at-home.svg',
+      imageAlt: 'At home illustration',
     },
     {
       id: 2,
@@ -60,8 +59,8 @@ export async function getInfoCards(): Promise<InfoCard[]> {
         "We've got allergen-grade filters to help you get through the season.",
       actionText: 'See filters',
       actionLink: '#',
-      imageSrc: '/images/flu-season.svg',
-      imageAlt: 'Flu season illustration',
+      imageSrc: '/images/air-filter.svg',
+      imageAlt: 'Air filter illustration',
     },
     {
       id: 3,
@@ -70,8 +69,8 @@ export async function getInfoCards(): Promise<InfoCard[]> {
         'We report on-time rent payments every 3 months to help boost your credit.',
       actionText: 'See report',
       actionLink: '#',
-      imageSrc: '/images/credit-report.svg',
+      imageSrc: '/images/credit-building.svg',
       imageAlt: 'Credit report illustration',
     },
-  ]
+  ];
 }
