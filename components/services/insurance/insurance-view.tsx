@@ -1,8 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PageHeader } from '@/components/layout/header';
 
 /**
  * InsuranceView Component
@@ -14,19 +12,13 @@ export function InsuranceView() {
   return (
     <div className="w-full bg-white overflow-hidden">
       <div className="max-w-[375px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] mx-auto flex flex-col items-center gap-6">
-        {/* Header Section */}
-        <PageHeader 
-          logoSrc="/images/second-nature-logo-gradient.svg"
-          logoAlt="Second Nature"
-          monthlyTotal="$2,740"
-        />
+        {/* Breadcrumb Section */}
+        <Breadcrumb />
 
         {/* Main Content Container - Responsive Layout */}
         <div className="w-full md:flex md:flex-row md:flex-wrap md:justify-center md:gap-8 lg:gap-12">
           {/* Left Column on Desktop / Top Section on Mobile */}
           <div className="w-full md:w-5/12 lg:w-1/3 px-6 md:px-0 flex flex-col items-center gap-8">
-            <Breadcrumb />
-
             {/* Insurance Hero Section */}
             <div className="w-full flex flex-col">
               <div className="w-full flex flex-col justify-center items-center gap-6">

@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { X } from 'lucide-react';
-import { PageHeader } from '../../layout/header';
 import { Breadcrumb } from '../../common/breadcrumb';
 
 /**
@@ -12,13 +11,6 @@ import { Breadcrumb } from '../../common/breadcrumb';
 export function DeclineInsuranceView() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-[#F7F7FA]">
-      {/* Header */}
-      <PageHeader 
-        logoSrc="/images/second-nature-logo-gradient.svg"
-        logoAlt="Second Nature"
-        monthlyTotal="$2,740"
-      />
-
       {/* Main Content */}
       <main className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
         {/* Breadcrumb */}
@@ -26,8 +18,8 @@ export function DeclineInsuranceView() {
           <Breadcrumb
             items={[
               { label: 'Resident Services', href: '/' },
-              { label: 'Insurance', href: '/insurance' },
-              { label: 'Decline Standard Policy', href: '/insurance/decline', current: true }
+              { label: 'Insurance', href: '/services/insurance' },
+              { label: 'Decline Standard Policy', href: '/services/insurance/decline', current: true }
             ]}
           />
         </div>
@@ -35,7 +27,7 @@ export function DeclineInsuranceView() {
         {/* Decline Insurance Card */}
         <div className="w-full max-w-[327px] md:max-w-[480px] lg:max-w-[520px] p-8 relative bg-white shadow-[0px_30px_40px_rgba(9,9,73,0.08)] overflow-hidden rounded-[24px] border border-[#E8E8F1] flex flex-col gap-8 transition-all duration-300">
           {/* Close Button */}
-          <Link href="/insurance" className="absolute right-5 top-5">
+          <Link href="/services/insurance" className="absolute right-5 top-5">
             <X className="w-6 h-6 text-[#090949] hover:text-[#396E1F] transition-colors" />
           </Link>
 

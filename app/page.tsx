@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { DynamicIllustration } from '@/components/illustrations/DynamicIllustration';
 import { InfoCardsCarousel } from '@/components/info-cards-carousel';
 import { ResidentServices } from '@/components/resident-services';
-import { getUserData, getInfoCards } from '@/lib/data';
+import { getUserData, getInfoCards, getBranding } from '@/lib/resident-service';
 import { ThemeProvider } from '../components/theme-provider';
 // Use SVGs as static images from public/icons/
 const atHomeIconUrl = '/icons/at-home.svg';
@@ -11,7 +11,7 @@ const creditBuildingIconUrl = '/icons/credit-building.svg';
 
 import { getUserIdFromSession } from '@/lib/session';
 import { UserIdHandler } from './components/user-id-handler';
-import { IllustrationPlaceholder } from '../components/illustrations/IllustrationPlaceholder';
+import { BrandingHandler } from './components/branding-handler';
 
 // Note: Next.js 15 bug — the error about needing to await searchParams is a false positive for server components. See https://nextjs.org/docs/messages/sync-dynamic-apis
 interface PageProps {
@@ -19,9 +19,11 @@ interface PageProps {
 }
 
 export default async function Dashboard({ searchParams }: PageProps) {
-  // Get userId from query params or session
-  const queryUserId = searchParams.userId as string | undefined;
-  let userId = queryUserId || (await getUserIdFromSession());
+	// Await searchParams for Next.js 15 compatibility
+	const params = await searchParams;
+	// Get userId from query params or session
+	const queryUserId = (await searchParams).userId as string | undefined;
+	let userId = queryUserId || (await getUserIdFromSession());
 
   // Validate UUID format
   if (
@@ -37,27 +39,31 @@ export default async function Dashboard({ searchParams }: PageProps) {
     getInfoCards(),
   ]);
 
-  return (
-    <ThemeProvider
-      primaryBrandingColor={userData.branding.primaryBrandingColor}
-      secondaryBrandingColor={userData.branding.secondaryBrandingColor}
-    >
-      <div className="min-h-screen bg-white font-sans">
-        {/* UserIdHandler will handle setting the cookie on the client side */}
-        <UserIdHandler queryUserId={queryUserId} />
+	const branding = await getBranding(userData.companyId);
+	// Branding cookie will be set client-side via BrandingHandler
 
-        {/* Header with logo */}
-        <header className="border-b border-primary py-4 px-6">
-          <div className="max-w-7xl mx-auto">
-            <Image
-              src="/images/invitation-homes-logo.svg"
-              alt="Invitation Homes"
-              width={180}
-              height={40}
-              className="h-10 w-auto"
-            />
-          </div>
-        </header>
+	return (
+		<ThemeProvider
+			primaryBrandingColor={branding.primaryBrandColor}
+			secondaryBrandingColor={branding.secondaryBrandColor}
+		>
+			<div className="min-h-screen bg-white font-sans">
+				{/* UserIdHandler will handle setting the cookie on the client side */}
+				<UserIdHandler queryUserId={queryUserId} />
+				<BrandingHandler branding={branding} />
+
+				{/* Header with logo */}
+				<header className="border-b border-primary py-4 px-6">
+					<div className="max-w-7xl mx-auto">
+						<Image
+							src={branding.logoSrc}
+							alt={branding.name}
+							width={180}
+							height={40}
+							className="h-10 w-auto"
+						/>
+					</div>
+				</header>
 
         <main className="max-w-7xl mx-auto px-6 pb-12">
           {/* Cityscape illustration */}

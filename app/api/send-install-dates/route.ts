@@ -21,14 +21,14 @@ export async function POST(req: NextRequest) {
     .map(
       (d: InstallDate, i: number) =>
         `Date ${i + 1}: ${
-          d.date ? new Date(d.date).toLocaleString() : 'Not set'
+          d.date ? new Date(d.date).toLocaleDateString() : 'Not set'
         }\nTimes: ${d.times.join(', ')}`
     )
     .join('\n\n');
 
   const mailOptions = {
-    from: process.env.SMTP_USER,
-    to: 'zsimpson@secondnature.com', // TODO: Replace with actual recipient
+    from: 'no-reply@SecondNature.com',
+    to: 'zsimpson@secondnature.com, arukin@secondnature.com, jmitchell@secondnature.com', // TODO: Replace with actual recipient
     subject: `Install Dates for User ${userId}`,
     text: `User ID: ${userId}\n\nSelected Install Dates:\n\n${dateList}`,
   };

@@ -80,15 +80,15 @@ const MultiTimeSelect: React.FC<{
             <label
               key={option}
               className={`flex items-center px-5 py-4 cursor-pointer gap-3 text-lg font-semibold transition bg-white hover:bg-[#F4F4FB] ${
-                selected.includes(option) ? 'bg-[#F4F4FB]' : ''
+                selected.includes(option) ? 'bg-primary' : ''
               }`}
             >
               {/* Custom checkbox */}
               <span
                 className={`w-6 h-6 flex items-center justify-center rounded border-2 transition-colors mr-2 ${
                   selected.includes(option)
-                    ? 'border-[#A78BFA] bg-[#A78BFA]'
-                    : 'border-[#B6B6C7] bg-white'
+                    ? 'border-primary bg-primary'
+                    : 'border-primary bg-white'
                 }`}
               >
                 {selected.includes(option) && (
@@ -197,7 +197,7 @@ export const InstallTime: React.FC<InstallTimeProps> = ({
                 >
                   {date ? format(date, 'MM/dd/yyyy') : 'mm/dd/yyyy'}
                 </span>
-                <CalendarIcon className="w-6 h-6 text-[#8B5CF6]" />
+                <CalendarIcon className="w-6 h-6 text-primary" />
               </button>
               {calendarOpen && (
                 <div className="absolute z-10 mt-2 left-0 w-full bg-white rounded-2xl shadow-lg border border-[#B6B6C7] p-4">
