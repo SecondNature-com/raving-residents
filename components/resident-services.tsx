@@ -34,7 +34,7 @@ export interface InstallDate {
 }
 
 enum serviceDesctiption {
-  filters = 'Provide your air filter’s measurements before your move-in date.',
+  filters = 'Provide your air filter’s measurements before your next ship date',
   credit = 'Credit building',
   insurance = 'Review your benefits.',
   internet = 'Schedule your installation.',
@@ -74,7 +74,10 @@ export function ResidentServices({
                     </p>
                   )}
                 </div>
-                <ChevronRight className="h-5 w-5 text-primary ml-2 flex-shrink-0" aria-hidden="true" />
+                <ChevronRight
+                  className="h-5 w-5 text-primary ml-2 flex-shrink-0"
+                  aria-hidden="true"
+                />
               </Link>
             )
         )}
