@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 		.map(
 			(d: InstallDate, i: number) =>
 				`Date ${i + 1}: ${
-					d.date ? new Date(d.date).toLocaleString() : 'Not set'
+					d.date ? new Date(d.date).toLocaleDateString() : 'Not set'
 				}\nTimes: ${d.times.join(', ')}`
 		)
 		.join('\n\n');
