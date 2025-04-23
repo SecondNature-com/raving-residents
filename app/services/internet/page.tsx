@@ -13,7 +13,7 @@ import { Plus } from 'lucide-react';
 
 import { useRouter } from 'next/navigation';
 import { sendInstallDates } from '../../../lib/utils';
-import { InstallDate } from '../../../lib/data';
+import { InstallDate } from '../../../lib/resident-service';
 
 export default function InternetService() {
 	const router = useRouter();

@@ -29,6 +29,11 @@ interface UserData {
 	companyId: string;
 }
 
+export interface InstallDate {
+	date: Date | undefined;
+	times: string[];
+}
+
 export async function getUserData(userId: string): Promise<UserData> {
 	const client = getApiClient();
 

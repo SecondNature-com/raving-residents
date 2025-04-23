@@ -25,6 +25,10 @@ function getServiceUrl(code: ServiceCode): string | null {
 interface ResidentServicesProps {
 	services: Service[];
 }
+export interface InstallDate {
+	date: Date | undefined;
+	times: string[];
+}
 
 export function ResidentServices({ services }: ResidentServicesProps) {
 	return (
