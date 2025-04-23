@@ -21,6 +21,11 @@ interface UserData {
   branding: Branding;
 }
 
+export interface InstallDate {
+  date: Date | undefined;
+  times: string[];
+}
+
 export async function getUserData(userId: string): Promise<UserData> {
   // Make API calls in parallel for better performance
   const [userProfile, userServices, branding] = await Promise.all([
