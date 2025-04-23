@@ -6,10 +6,7 @@ import { SecondNatureAPI } from './second-nature-api';
 import { Service, ServiceCode } from './api';
 
 // For now, also import mock data functions as fallback
-import {
-	fetchBranding as mockFetchBranding,
-	fetchUserServices as mockFetchUserServices,
-} from './api';
+import { fetchUserServices as mockFetchUserServices } from './api';
 import { Branding } from './second-nature-types';
 
 // Create API client (only on server side)

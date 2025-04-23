@@ -27,11 +27,6 @@ export interface UserServicesResponse {
 	services: Service[];
 }
 
-export interface Branding {
-	primaryBrandingColor: string;
-	secondaryBrandingColor: string;
-}
-
 // Mock user data types
 interface MockUser {
 	profile: {
@@ -40,7 +35,6 @@ interface MockUser {
 		email: string;
 	};
 	services: Service[];
-	branding: Branding;
 }
 
 type MockUsers = {
@@ -93,10 +87,6 @@ const mockUsers: MockUsers = {
 				code: 'owner_paid_pest',
 			},
 		],
-		branding: {
-			primaryBrandingColor: '#16A34A',
-			secondaryBrandingColor: '#0F172A',
-		},
 	},
 	// Sarah - New resident with basic services
 	'987fcdeb-51a2-43c1-a140-556642440001': {
@@ -122,10 +112,6 @@ const mockUsers: MockUsers = {
 				code: 'internet',
 			},
 		],
-		branding: {
-			primaryBrandingColor: '#A00F8B',
-			secondaryBrandingColor: '#FBD46D',
-		},
 	},
 	// Michael - Mid-term resident with selected services
 	'456bcdef-02a9-4b1f-9c3d-556642440002': {
@@ -156,10 +142,6 @@ const mockUsers: MockUsers = {
 				code: 'insurance',
 			},
 		],
-		branding: {
-			primaryBrandingColor: '#FF6F61',
-			secondaryBrandingColor: '#254441',
-		},
 	},
 };
 
@@ -214,25 +196,4 @@ export async function fetchUserServices(
 	return {
 		services: user.services,
 	};
-}
-
-export async function fetchBranding(userId: string): Promise<Branding> {
-	// Simulate API call delay
-	await new Promise((resolve) => setTimeout(resolve, 100));
-
-	// Validate UUID format
-	if (
-		!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-			userId
-		)
-	) {
-		throw new Error('Invalid UUID format');
-	}
-
-	const user = mockUsers[userId];
-	if (!user) {
-		throw new Error('User not found');
-	}
-
-	return user.branding;
 }
