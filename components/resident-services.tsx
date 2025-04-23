@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 
 import { Service, ServiceCode } from '@/lib/resident-service';
 import { Branding } from '../lib/second-nature-types';
@@ -32,6 +33,13 @@ export interface InstallDate {
   times: string[];
 }
 
+enum serviceDesctiption {
+  filters = 'Provide your air filter’s measurements before your move-in date.',
+  credit = 'Credit building',
+  insurance = 'Review your benefits.',
+  internet = 'Schedule your installation.',
+}
+
 export function ResidentServices({
   services,
   branding,
@@ -50,9 +58,23 @@ export function ResidentServices({
               <Link
                 key={service.id}
                 href={getServiceUrl(service.code)!}
-                className="border border-primary rounded-lg p-4 hover:bg-[#F8FAFC] transition-colors"
+                className="border border-primary rounded-lg p-4 hover:bg-[#F8FAFC] transition-colors flex justify-between items-center"
               >
-                <span className="text font-medium">{service.name}</span>
+                <div>
+                  <span className="text font-medium">{service.name}</span>
+                  {serviceDesctiption[
+                    service.code as keyof typeof serviceDesctiption
+                  ] && (
+                    <p className="text-[#64748B] mb-2 text-base">
+                      {
+                        serviceDesctiption[
+                          service.code as keyof typeof serviceDesctiption
+                        ]
+                      }
+                    </p>
+                  )}
+                </div>
+                <ChevronRight className="h-5 w-5 text-primary ml-2 flex-shrink-0" aria-hidden="true" />
               </Link>
             )
         )}
