@@ -6,7 +6,7 @@ interface SecondNatureConfig {
 	baseUrl: string;
 }
 
-import type { Resident, Branding } from './second-nature-types';
+import type { Resident, Branding, ServiceType } from './second-nature-types';
 
 export class SecondNatureAPI {
 	private client: AxiosInstance;
@@ -48,5 +48,14 @@ export class SecondNatureAPI {
 			`/companies/${companyId}`,
 			'GET'
 		) as Promise<Branding>;
+	}
+
+	public async fetchResidentServiceTypes(
+		residentId: string
+	): Promise<ServiceType[]> {
+		return this.sendRequest(
+			`/tenants/${residentId}/service-types`,
+			'GET'
+		) as Promise<ServiceType[]>;
 	}
 }

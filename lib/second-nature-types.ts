@@ -38,3 +38,21 @@ export interface Branding {
 	country: string | null;
 	verifiedAddressId: string | null;
 }
+
+export interface ServiceType {
+	id: string;
+	name: string;
+	description: string | null;
+	code: string;
+}
+
+export type ServiceCode =
+	| 'filters'
+	| 'pest_control'
+	| 'id'
+	| 'move'
+	| 'credit'
+	| 'rewards'
+	| 'insurance'
+	| 'internet'
+	| 'owner_paid_pest';
