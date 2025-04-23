@@ -17,8 +17,10 @@ interface PageProps {
 }
 
 export default async function Dashboard({ searchParams }: PageProps) {
+	// Await searchParams for Next.js 15 compatibility
+	const params = await searchParams;
 	// Get userId from query params or session
-	const queryUserId = searchParams.userId as string | undefined;
+	const queryUserId = params.userId as string | undefined;
 	let userId = queryUserId || (await getUserIdFromSession());
 
 	// Validate UUID format
