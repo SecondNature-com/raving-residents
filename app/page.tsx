@@ -91,7 +91,10 @@ export default async function Dashboard({ searchParams }: PageProps) {
           </p>
 
           {/* Resident services section */}
-          <ResidentServices services={userData.availableServices} />
+          <ResidentServices
+            services={userData.availableServices}
+            branding={branding}
+          />
 
           {/* Footer */}
           <div className="text-center text-sm text-[#64748B] mt-12">
