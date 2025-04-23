@@ -9,7 +9,7 @@ interface IllustrationPlaceholderProps {
 export function IllustrationPlaceholder({
   className = '',
   width = 600,
-  height = 200,
+  height = 400,
 }: IllustrationPlaceholderProps) {
   return (
     <div
@@ -19,7 +19,7 @@ export function IllustrationPlaceholder({
       <svg
         width={width}
         height={height}
-        viewBox="0 0 1000 200"
+        viewBox="75 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto"

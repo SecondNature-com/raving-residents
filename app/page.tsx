@@ -12,6 +12,7 @@ const creditBuildingIconUrl = '/icons/credit-building.svg';
 import { getUserIdFromSession } from '@/lib/session';
 import { UserIdHandler } from './components/user-id-handler';
 import { BrandingHandler } from './components/branding-handler';
+import { IllustrationPlaceholder } from '../components/illustrations/IllustrationPlaceholder';
 
 // Note: Next.js 15 bug — the error about needing to await searchParams is a false positive for server components. See https://nextjs.org/docs/messages/sync-dynamic-apis
 interface PageProps {
@@ -19,11 +20,9 @@ interface PageProps {
 }
 
 export default async function Dashboard({ searchParams }: PageProps) {
-	// Await searchParams for Next.js 15 compatibility
-	const params = await searchParams;
-	// Get userId from query params or session
-	const queryUserId = (await searchParams).userId as string | undefined;
-	let userId = queryUserId || (await getUserIdFromSession());
+  // Get userId from query params or session
+  const queryUserId = (await searchParams).userId as string | undefined;
+  const userId = queryUserId ?? (await getUserIdFromSession());
 
   // Validate UUID format
   if (
@@ -39,31 +38,31 @@ export default async function Dashboard({ searchParams }: PageProps) {
     getInfoCards(),
   ]);
 
-	const branding = await getBranding(userData.companyId);
-	// Branding cookie will be set client-side via BrandingHandler
+  const branding = await getBranding(userData.companyId);
+  // Branding cookie will be set client-side via BrandingHandler
 
-	return (
-		<ThemeProvider
-			primaryBrandingColor={branding.primaryBrandColor}
-			secondaryBrandingColor={branding.secondaryBrandColor}
-		>
-			<div className="min-h-screen bg-white font-sans">
-				{/* UserIdHandler will handle setting the cookie on the client side */}
-				<UserIdHandler queryUserId={queryUserId} />
-				<BrandingHandler branding={branding} />
+  return (
+    <ThemeProvider
+      primaryBrandingColor={branding.primaryBrandColor}
+      secondaryBrandingColor={branding.secondaryBrandColor}
+    >
+      <div className="min-h-screen bg-white font-sans">
+        {/* UserIdHandler will handle setting the cookie on the client side */}
+        <UserIdHandler queryUserId={queryUserId} />
+        <BrandingHandler branding={branding} />
 
-				{/* Header with logo */}
-				<header className="border-b border-primary py-4 px-6">
-					<div className="max-w-7xl mx-auto">
-						<Image
-							src={branding.logoSrc}
-							alt={branding.name}
-							width={180}
-							height={40}
-							className="h-10 w-auto"
-						/>
-					</div>
-				</header>
+        {/* Header with logo */}
+        <header className="border-b border-primary py-4 px-6">
+          <div className="max-w-7xl mx-auto">
+            <Image
+              src={branding.logoSrc}
+              alt={branding.name}
+              width={180}
+              height={40}
+              className="h-10 w-auto"
+            />
+          </div>
+        </header>
 
         <main className="max-w-7xl mx-auto px-6 pb-12">
           {/* Cityscape illustration */}
@@ -77,14 +76,19 @@ export default async function Dashboard({ searchParams }: PageProps) {
             />
           </div>
 
+          {/* Information cards carousel */}
+          <IllustrationPlaceholder className="my-12" />
+
           {/* Welcome message */}
           <h1 className="text-[32px] leading-[40px] font-bold text mb-8">
             Its time to unlock {userData.availableServices.length} of your
-            services.
+            benefits.
           </h1>
 
-          {/* Information cards carousel */}
-          <IllustrationPlaceholder className="my-12" />
+          <p className="text-[#64748B] mb-6 text-base">
+            Unlock your benefits today to make the most out of your benefits
+            package.
+          </p>
 
           {/* Resident services section */}
           <ResidentServices services={userData.availableServices} />
