@@ -221,7 +221,7 @@ export default function InsuranceServicePage() {
           </div>
           <Link
             href="/services/insurance/decline"
-            className="w-full h-12 min-w-[120px] px-6 py-3 mt-2 bg-primary hover:bg-[#2c5518] rounded-xl flex justify-center items-center font-semibold text-white text-base transition"
+            className="w-full h-12 min-w-[120px] px-6 py-3 mt-2 bg-primary hover:opacity-80 rounded-xl flex justify-center items-center font-semibold text-white text-base transition"
           >
             Decline Standard Policy
           </Link>
