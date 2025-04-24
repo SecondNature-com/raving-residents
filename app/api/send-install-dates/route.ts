@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { InstallDate } from '@/lib/data';
 import { getUserIdFromSession } from '../../../lib/session';
+import { getUserData } from '../../../lib/resident-service';
 
 export async function POST(req: NextRequest) {
   const { installDates } = await req.json();
   const userId = await getUserIdFromSession();
+  const userData = await getUserData(userId);
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -24,13 +26,13 @@ export async function POST(req: NextRequest) {
           d.date ? new Date(d.date).toLocaleDateString() : 'Not set'
         }\nTimes: ${d.times.join(', ')}`
     )
-    .join('\n\n');
+    .join('\n');
 
   const mailOptions = {
     from: 'no-reply@SecondNature.com',
     to: 'zsimpson@secondnature.com, arukin@secondnature.com, jmitchell@secondnature.com', // TODO: Replace with actual recipient
     subject: `Install Dates for User ${userId}`,
-    text: `User ID: ${userId}\n\nSelected Install Dates:\n\n${dateList}`,
+    text: `User ID: ${userId}\nCompany ID: ${userData.companyId}\nCustomer Name: ${userData.firstName} ${userData.lastName}\nEmail: ${userData.email}\n\nSelected Install Dates:\n${dateList}`,
   };
 
   try {
