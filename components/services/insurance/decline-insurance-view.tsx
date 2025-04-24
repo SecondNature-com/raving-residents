@@ -135,7 +135,7 @@ export async function DeclineInsuranceView() {
 								rel="noopener noreferrer"
 								className="w-full h-14 px-6 bg-[#396E1F] hover:bg-[#2c5518] rounded-xl flex justify-center items-center text-white text-base font-semibold transition-colors text-center"
 							>
-								Yes, I want to decline
+								Upload 3rd Party Policy
 							</a>
 						</div>
 					</div>
