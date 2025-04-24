@@ -35,8 +35,10 @@ export interface InstallDate {
 enum serviceDesctiption {
 	filters = 'Provide your air filter’s measurements before your next ship date',
 	credit = 'Credit building',
-	insurance = 'Review your benefits.',
+	insurance = 'Review your renters insurance policy information.',
 	internet = 'Schedule your installation.',
+	pest_control = 'Review your pest control benefits.',
+	rewards = 'Review your rewards for paying rent on time.',
 }
 
 export function ResidentServices({

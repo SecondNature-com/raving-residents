@@ -48,8 +48,14 @@ export const getUserData = async (userId: string): Promise<UserData> => {
 		'owner_paid_pest',
 	];
 
+	// Normalize code property to lower case for all records
+	const userServicesNormalized = userServicesRaw.map(service => ({
+		...service,
+		code: typeof service.code === 'string' ? service.code.toLowerCase() : service.code
+	}));
+
 	// Filter userServices to only include valid codes
-	let userServices = userServicesRaw.filter((service) =>
+	let userServices = userServicesNormalized.filter((service) =>
 		validCodes.includes(service.code as ServiceCode)
 	);
 
