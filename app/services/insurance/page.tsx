@@ -114,7 +114,7 @@ export default function InsuranceServicePage() {
               </div>
             </div>
           </div>
-          <div className="w-full h-px my-6 bg-[#E8E8F1]" />
+          <div className="w-full h-px my-6 bg-primary" />
 
           {/* Policy Basics Card */}
           <div className="w-[327px] bg-[#F7F7FB] rounded-[24px] flex flex-col gap-6 p-5 mb-6">
