@@ -53,7 +53,7 @@ export default async function Dashboard({ searchParams }: PageProps) {
 
         {/* Header with logo */}
         <header className="border-b border-primary py-4 px-6">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto flex items-center">
             <Image
               src={branding.logoSrc}
               alt={branding.name}

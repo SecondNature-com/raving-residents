@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { X } from 'lucide-react';
 import { Breadcrumb } from '../../common/breadcrumb';
+import Image from 'next/image';
 
 /**
  * DeclineInsuranceView Component
@@ -11,6 +12,24 @@ import { Breadcrumb } from '../../common/breadcrumb';
 export function DeclineInsuranceView() {
   return (
     <div className="flex flex-col items-center min-h-screen bg-[#F7F7FA]">
+      {/* Header */}
+      <header className="border-b border-primary py-4 px-6 w-full">
+        <div className="max-w-7xl mx-auto flex items-center">
+          <Link href="/" className="flex items-center text mr-4">
+            <span className="text-lg">‹</span>
+            <span className="ml-1">Back</span>
+          </Link>
+          <Image
+            src="/images/invitation-homes-logo.svg"
+            alt="Invitation Homes"
+            width={180}
+            height={40}
+            className="h-10 w-auto"
+            priority
+          />
+        </div>
+      </header>
+
       {/* Main Content */}
       <main className="w-full max-w-7xl mx-auto px-4 py-8 flex flex-col items-center">
         {/* Breadcrumb */}

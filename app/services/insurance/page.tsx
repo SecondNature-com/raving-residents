@@ -6,9 +6,9 @@ export default function InsuranceServicePage() {
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col items-center">
       {/* Header with back button and logo */}
-      <header className="w-full border-b border-primary py-4 px-6 bg-white">
+      <header className="border-b border-primary py-4 px-6">
         <div className="max-w-7xl mx-auto flex items-center">
-          <Link href="/" className="flex items-center text mr-4 hover:cursor-pointer">
+          <Link href="/" className="flex items-center text mr-4">
             <span className="text-lg">‹</span>
             <span className="ml-1">Back</span>
           </Link>
@@ -97,7 +97,7 @@ export default function InsuranceServicePage() {
             If you prefer to use your own renters insurance policy, you can decline our standard coverage and submit your policy for approval. Make sure your policy meets all lease requirements.
           </div>
           <Link
-            href="/insurance/decline"
+            href="/services/insurance/decline"
             className="w-full h-12 min-w-[120px] px-6 py-3 mt-2 bg-[#396E1F] hover:bg-[#2c5518] rounded-xl flex justify-center items-center font-semibold text-white text-base transition"
           >
             Decline Standard Policy
