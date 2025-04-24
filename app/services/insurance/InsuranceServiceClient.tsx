@@ -1,13 +1,20 @@
-'use server';
+"use client";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Branding } from "@/lib/second-nature-types";
+import { getBrandingFromCookieClient } from "../../../lib/branding-cookie-client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { getUserIdFromSession } from '@/lib/session';
-import { getUserData } from '@/lib/resident-service';
+export default function InsuranceServicePage({ insuredName }: { insuredName: string }) {
+  const [branding, setBranding] = useState<Branding | null>(null);
 
-export default async function InsuranceServicePage() {
-  const userId = await getUserIdFromSession();
-  const userData = await getUserData(userId);
+  useEffect(() => {
+    setBranding(getBrandingFromCookieClient());
+  }, []);
+
+  if (!branding) {
+    return <div>Branding info unavailable</div>;
+  }
 
   return (
     <div className="min-h-screen bg-white font-sans flex flex-col items-center">
@@ -19,8 +26,8 @@ export default async function InsuranceServicePage() {
             <span className="ml-1">Back</span>
           </Link>
           <Image
-            src="/images/invitation-homes-logo.svg"
-            alt="Invitation Homes"
+            src={branding.logoSrc}
+            alt={branding.name}
             width={180}
             height={40}
             className="h-10 w-auto"
@@ -43,49 +50,49 @@ export default async function InsuranceServicePage() {
             >
               <path
                 d="M48 8H16C13.7909 8 12 9.79086 12 12V52C12 54.2091 13.7909 56 16 56H48C50.2091 56 52 54.2091 52 52V12C52 9.79086 50.2091 8 48 8Z"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M24 20H40"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M24 32H40"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M24 44H32"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M32 8V4"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M20 8V4"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M44 8V4"
-                stroke="#2C5518"
+                stroke={branding.primaryBrandColor}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -122,16 +129,13 @@ export default async function InsuranceServicePage() {
                 Policy #:
               </span>
               <span className="text-[#090949] text-sm font-normal leading-[21px] font-poppins">
-                {' '}
-                CS1037-A-GEN
-                <br />
+                {' '}CS1037-A-GEN<br />
               </span>
               <span className="text-[#090949] text-sm font-semibold leading-[21px] font-poppins">
                 Insured:
               </span>
               <span className="text-[#090949] text-sm font-normal leading-[21px] font-poppins">
-                {' '}
-                {userData.firstName} {userData.lastName}
+                {' '}{insuredName}
               </span>
             </div>
           </div>
@@ -144,24 +148,19 @@ export default async function InsuranceServicePage() {
                 Property:
               </span>
               <span className="text-[#090949] text-sm font-normal leading-[21px] font-poppins">
-                {' '}
-                $100,000
-                <br />
+                {' '}$100,000<br />
               </span>
               <span className="text-[#090949] text-sm font-semibold leading-[21px] font-poppins">
                 Belongings:
               </span>
               <span className="text-[#090949] text-sm font-normal leading-[21px] font-poppins">
-                {' '}
-                $10,000
-                <br />
+                {' '}$10,000<br />
               </span>
               <span className="text-[#090949] text-sm font-semibold leading-[21px] font-poppins">
                 Deductible:
               </span>
               <span className="text-[#090949] text-sm font-normal leading-[21px] font-poppins">
-                {' '}
-                $0
+                {' '}$0
               </span>
             </div>
           </div>
@@ -171,9 +170,8 @@ export default async function InsuranceServicePage() {
             rel="noopener noreferrer"
             className="w-full h-12 min-w-[120px] px-6 py-3 bg-white border border-primary rounded-xl flex justify-center items-center gap-2 font-semibold text-[#090949] text-base hover:bg-[#f1f6f2] transition"
           >
-            View Master Policy
+            Download master policy
             <span className="w-6 h-6 flex items-center justify-center">
-              {/* Download SVG Icon */}
               <svg
                 width="24"
                 height="24"
@@ -184,14 +182,14 @@ export default async function InsuranceServicePage() {
                 <rect width="24" height="24" rx="6" fill="#D9D9D9" />
                 <path
                   d="M12 7v6m0 0l-2.5-2.5M12 13l2.5-2.5"
-                  stroke="#2C5518"
+                  stroke={branding.primaryBrandColor}
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   d="M7 17h10"
-                  stroke="#2C5518"
+                  stroke={branding.primaryBrandColor}
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
@@ -212,9 +210,9 @@ export default async function InsuranceServicePage() {
           </div>
           <Link
             href="/services/insurance/decline"
-            className="w-full h-12 min-w-[120px] px-6 py-3 mt-2 border border-[#2C5518] text-[#2C5518] bg-white hover:bg-[#f1f6f2] rounded-xl flex justify-center items-center font-semibold text-base transition"
+            className="w-full h-12 min-w-[120px] px-6 py-3 mt-2 bg-primary hover:bg-[#2c5518] rounded-xl flex justify-center items-center font-semibold text-white text-base transition"
           >
-            Provide Your Own Insurance
+            Decline Standard Policy
           </Link>
         </div>
 

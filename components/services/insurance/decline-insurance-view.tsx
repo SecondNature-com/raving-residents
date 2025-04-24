@@ -58,7 +58,7 @@ export function DeclineInsuranceView() {
             {/* Requirements List */}
             <div className="px-3 flex flex-col gap-3 md:px-5 md:gap-4">
               <div className="text-[#5C5C75] text-sm md:text-base">
-                1) <span className="font-semibold">[$X00K]</span> in property damage and liability coverage
+                1) <span className="font-semibold">$100,000</span> in property damage and liability coverage
                 <br />2) From an <span className="font-semibold">A-rated carrier</span>
                 <br />3) All adults listed as named insured or also have their own policies. If the home has an animal, <span className="font-semibold">$25k</span> bite coverage or more is required.
                 <br />4) Add <span className="font-semibold">[PMC Name]</span> as additionally insured with the following address:
@@ -72,7 +72,7 @@ export function DeclineInsuranceView() {
             </div>
             
             <p className="text-[#5C5C75] text-base md:text-lg">
-              A team member will review it and update your charges appropriately. We'll send you a reminder to update the policy on the portal by move-in date. The standard policy is [$XY.95/mo] while the national average price for renters insurance is $18/mo.
+              A team member will review it and update your charges appropriately. We'll send you a reminder to update the policy on the portal by move-in date. The standard policy is $15.95/mo while the national average price for renters insurance is $18/mo.
             </p>
           </div>
           
