@@ -122,17 +122,21 @@ export async function DeclineInsuranceView() {
 								A team member will review it and update your
 								charges appropriately. We'll send you a reminder
 								to update the policy on the portal by move-in
-								date. The standard policy is $15.95/mo while the
-								national average price for renters insurance is
-								$18/mo.
+								date. The national average price for renters
+								insurance is $18/mo.
 							</p>
 						</div>
 
 						{/* Action Button */}
 						<div className="flex flex-col items-end">
-							<button className="w-full h-14 px-6 bg-[#396E1F] hover:bg-[#2c5518] rounded-xl flex justify-center items-center text-white text-base font-semibold transition-colors">
+							<a
+								href="https://insurance.residentforms.com/pma-tenant-onboarding"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="w-full h-14 px-6 bg-[#396E1F] hover:bg-[#2c5518] rounded-xl flex justify-center items-center text-white text-base font-semibold transition-colors text-center"
+							>
 								Yes, I want to decline
-							</button>
+							</a>
 						</div>
 					</div>
 				</main>
