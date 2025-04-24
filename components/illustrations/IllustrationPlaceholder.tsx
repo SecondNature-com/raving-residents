@@ -19,7 +19,7 @@ export function IllustrationPlaceholder({
       <svg
         width={width}
         height={height}
-        viewBox="75 0 200 200"
+        viewBox="60 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-auto"
