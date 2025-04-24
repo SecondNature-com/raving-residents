@@ -172,7 +172,7 @@ export default async function InsuranceServicePage() {
               rel="noopener noreferrer"
               className="w-full h-12 min-w-[120px] px-6 py-3 bg-white border border-primary rounded-xl flex justify-center items-center gap-2 font-semibold text-[#090949] text-base hover:bg-[#f1f6f2] transition"
             >
-              Download master policy
+              View Master Policy
               <span className="w-6 h-6 flex items-center justify-center">
                 {/* Download SVG Icon */}
                 <svg
